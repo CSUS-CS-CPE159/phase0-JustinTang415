@@ -1,0 +1,56 @@
+SPEDE GDB$ break main.c:49
+Breakpoint 2 at 0x101295: file src/main.c, line 49.
+SPEDE GDB$ break main.c:51
+Breakpoint 3 at 0x1012ca: file src/main.c, line 52.
+SPEDE GDB$ innfo breakk
+Undefined command: "innfo".  Try "help".
+SPEDE GDB$ info breaak
+Undefined info command: "breaak".  Try "help info".
+SPEDE GDB$ info break
+Num     Type           Disp Enb Address    What
+2       breakpoint     keep y   0x00101295 in main at src/main.c:49
+3       breakpoint     keep y   0x001012ca in main at src/main.c:52
+SPEDE GDB$ continue
+Continuing.
+Hello, world!
+Welcome to MyOS!
+NULL pointer!
+
+Breakpoint 2, main () at src/main.c:49
+49	    printf("The buffer size is %d bytes\n", strlen(buf));
+SPEDE GDB$ print buf
+$1 = "welcome to MyOS!\n", '\000' <repeats 110 times>
+SPEDE GDB$ print buf
+$2 = "welcome to MyOS!\n", '\000' <repeats 110 times>
+SPEDE GDB$ set buf[0] = 'W'
+SPEDE GDB$ print buf
+$3 = "Welcome to MyOS!\n", '\000' <repeats 110 times>
+SPEDE GDB$ continue
+Continuing.
+The buffer size is 17 bytes
+NULL pointer!
+
+Breakpoint 3, main () at src/main.c:52
+52	    printf("CPE/CSC 159 for Spring/Fall %d will be fun!\n", year);
+SPEDE GDB$ print yearr
+No symbol "yearr" in current context.
+SPEDE GDB$ print year
+$4 = 0x7b2
+SPEDE GDB$ print /d yearr
+No symbol "yearr" in current context.
+SPEDE GDB$ print /d year
+$5 = 1970
+SPEDE GDB$ set year=2025
+SPEDE GDB$ print /d year
+$6 = 8229
+SPEDE GDB$ print year
+$7 = 0x2025
+SPEDE GDB$ set year=2025.
+SPEDE GDB$ print /d year
+$8 = 2025
+SPEDE GDB$ continue
+Continuing.
+CPE/CSC 159 for Spring/Fall 2025 will be fun!
+[Inferior 1 (Remote target) exited normally]
+SPEDE GDB$ quit
+
